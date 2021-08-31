@@ -11,8 +11,8 @@ import XCTest
 
 class TodoItemListTests: XCTestCase {
 
-    func test_CreateList_with_no_input() {
-        let sut = TodoItemList(name: "Default List")
+    func test_initialState_of_list() {
+        let sut = makeSut()
 
         XCTAssertEqual(sut.name,  "Default List")
         XCTAssertEqual(sut.count, 0)
@@ -20,14 +20,14 @@ class TodoItemListTests: XCTestCase {
     }
 
     func test_addItem_to_list() {
-        let sut = TodoItemList(name: "Default List")
+        let sut = makeSut()
         sut.addItem("A new entry")
 
         XCTAssertEqual(sut.count, 1)
     }
 
     func test_itemForRow() {
-        let sut = TodoItemList(name: "Default List")
+        let sut = makeSut()
         let row = 0
         let item = "A new item"
 
@@ -37,7 +37,7 @@ class TodoItemListTests: XCTestCase {
     }
 
     func test_moveItem_to_index_0() {
-        let sut = TodoItemList(name: "Default List")
+        let sut = makeSut()
         sut.addItem("Todo1")
         sut.addItem("Todo2")
 
@@ -48,7 +48,7 @@ class TodoItemListTests: XCTestCase {
     }
 
     func test_moveItem_to_position_TodoItem_infront_of_other_items() {
-        let sut = TodoItemList(name: "Default List")
+        let sut = makeSut()
         sut.addItem("Todo1")
         sut.addItem("Todo2")
         sut.addItem("Todo3")
@@ -63,7 +63,7 @@ class TodoItemListTests: XCTestCase {
     }
 
     func test_moveItem_to_position_TodoItem_behind_other_items() {
-        let sut = TodoItemList(name: "Default List")
+        let sut = makeSut()
         sut.addItem("Todo1")
         sut.addItem("Todo2")
         sut.addItem("Todo3")
@@ -79,7 +79,7 @@ class TodoItemListTests: XCTestCase {
 
     func test_moveItem_throws_error_if_item_is_not_in_list() {
         var thrownError: Error?
-        let sut = TodoItemList(name: "Default List")
+        let sut = makeSut()
         sut.addItem("Todo2")
 
         XCTAssertThrowsError(try sut.move(item: "Todo1", to: 0)) { error  in
@@ -91,7 +91,7 @@ class TodoItemListTests: XCTestCase {
 
     func test_removeItem_throws_error_when_item_is_not_in_list() {
         var thrownError: Error?
-        let sut = TodoItemList(name: "Default List")
+        let sut = makeSut()
 
         XCTAssertThrowsError(try sut.remove(item: "Todo1")) { error  in
             thrownError = error
@@ -101,11 +101,18 @@ class TodoItemListTests: XCTestCase {
     }
     
     func test_removeItem_from_list() {
-        let sut = TodoItemList(name: "Default List")
+        let sut = makeSut()
         sut.addItem("Todo1")
 
         try? sut.remove(item: "Todo1")
         XCTAssertTrue(sut.isEmpty)
+    }
+
+    // MARK: Helpers
+    
+    func makeSut() -> TodoItemList {
+        let sut = TodoItemList(name: "Default List")
+        return sut
     }
 
 }
