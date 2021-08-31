@@ -21,7 +21,7 @@ enum ItemListError: Error {
     }
 }
 
-final class ItemList {
+final class TodoItemList {
 
     private(set) var name: String
     private var items = [String]()
