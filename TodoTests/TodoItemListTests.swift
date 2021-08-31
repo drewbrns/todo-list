@@ -18,7 +18,7 @@ class TodoItemListTests: XCTestCase {
         XCTAssertEqual(sut.count, 0)
         XCTAssertTrue(sut.isEmpty)
     }
-    
+
     func test_addItem_to_list() {
         let sut = TodoItemList(name: "Default List")
         sut.addItem("A new entry")

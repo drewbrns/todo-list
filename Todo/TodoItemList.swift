@@ -51,10 +51,7 @@ final class TodoItemList {
             throw ItemListError.moveError(index)
         }
 
-        // Remove item from current position
         items.remove(at: currentIndex)
-
-        // Insert it to new position
         items.insert(item, at: index)
     }
 
@@ -62,8 +59,6 @@ final class TodoItemList {
         guard let currentIndex = items.firstIndex(of: item) else {
             throw ItemListError.removeError
         }
-
-        // Remove item from current position
         items.remove(at: currentIndex)
     }
 
