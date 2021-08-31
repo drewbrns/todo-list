@@ -10,7 +10,7 @@ import Foundation
 final class TodoItemList {
 
     private(set) var name: String
-    private var items = [String]()
+    private var items = [TodoItem]()
 
     var count: Int {
         return items.count
@@ -24,15 +24,15 @@ final class TodoItemList {
         self.name = name
     }
 
-    func addItem(_ item: String) {
+    func addItem(_ item: TodoItem) {
         self.items.append(item)
     }
 
-    func item(at index: Int) -> String {
+    func item(at index: Int) -> TodoItem {
         return items[index]
     }
 
-    func move(item: String, to index: Int) throws {
+    func move(item: TodoItem, to index: Int) throws {
         guard let currentIndex = items.firstIndex(of: item) else {
             throw ListError.moveError(index)
         }
@@ -41,7 +41,7 @@ final class TodoItemList {
         items.insert(item, at: index)
     }
 
-    func remove(item: String) throws {
+    func remove(item: TodoItem) throws {
         guard let currentIndex = items.firstIndex(of: item) else {
             throw ListError.removeError
         }
