@@ -22,28 +22,29 @@ class TodoItemListTests: XCTestCase {
     func test_addItem_to_list() {
         let sut = makeSut()
         let todo1 = TodoItem(label: "A new entry")
-        sut.add(item: todo1)
+        try? sut.add(item: todo1)
 
         XCTAssertEqual(sut.count, 1)
     }
 
-//    func test_addItem_throws_error_when_item_already_exists() {
-//        var thrownError: Error?
-//        let sut = makeSut()
-//
-//        XCTAssertThrowsError(try sut.add(item: TodoItem(label: "todo1"))) { error  in
-//            thrownError = error
-//        }
-//
-//        XCTAssertTrue(thrownError is TodoItemList.ListError)
-//    }
+    func test_addItem_throws_error_when_item_already_exists() {
+        var thrownError: Error?
+        let sut = makeSut()
+        try? sut.add(item: TodoItem(label: "todo1"))
+
+        XCTAssertThrowsError(try sut.add(item: TodoItem(label: "todo1"))) { error  in
+            thrownError = error
+        }
+
+        XCTAssertTrue(thrownError is TodoItemList.ListError)
+    }
 
     func test_itemForRow() {
         let sut = makeSut()
         let row = 0
         let item = TodoItem(label: "A new item")
 
-        sut.add(item: item)
+        try? sut.add(item: item)
 
         XCTAssertEqual(sut.item(at: row), item)
     }
@@ -53,8 +54,8 @@ class TodoItemListTests: XCTestCase {
         let todo1 = TodoItem(label: "Todo1")
         let todo2 = TodoItem(label: "Todo2")
         
-        sut.add(item: todo1)
-        sut.add(item: todo2)
+        try? sut.add(item: todo1)
+        try? sut.add(item: todo2)
 
         try? sut.move(item: todo2 , to: 0)
 
@@ -68,10 +69,10 @@ class TodoItemListTests: XCTestCase {
         let todo2 = TodoItem(label: "Todo2")
         let todo3 = TodoItem(label: "Todo3")
         let todo4 = TodoItem(label: "Todo4")
-        sut.add(item: todo1)
-        sut.add(item: todo2)
-        sut.add(item: todo3)
-        sut.add(item: todo4)
+        try? sut.add(item: todo1)
+        try? sut.add(item: todo2)
+        try? sut.add(item: todo3)
+        try? sut.add(item: todo4)
 
         try? sut.move(item: todo4 , to: 1)
 
@@ -87,10 +88,10 @@ class TodoItemListTests: XCTestCase {
         let todo2 = TodoItem(label: "Todo2")
         let todo3 = TodoItem(label: "Todo3")
         let todo4 = TodoItem(label: "Todo4")
-        sut.add(item: todo1)
-        sut.add(item: todo2)
-        sut.add(item: todo3)
-        sut.add(item: todo4)
+        try? sut.add(item: todo1)
+        try? sut.add(item: todo2)
+        try? sut.add(item: todo3)
+        try? sut.add(item: todo4)
 
         try? sut.move(item: todo1 , to: 3)
 
@@ -103,7 +104,7 @@ class TodoItemListTests: XCTestCase {
     func test_moveItem_throws_error_if_item_is_not_in_list() {
         var thrownError: Error?
         let sut = makeSut()
-        sut.add(item: TodoItem(label: "Todo2"))
+        try? sut.add(item: TodoItem(label: "Todo2"))
 
         XCTAssertThrowsError(try sut.move(item: TodoItem(label: "todo1"), to: 0)) { error  in
             thrownError = error
@@ -126,7 +127,7 @@ class TodoItemListTests: XCTestCase {
     func test_removeItem_from_list() {
         let sut = makeSut()
         let todo1 = TodoItem(label: "Todo1")
-        sut.add(item: todo1)
+        try? sut.add(item: todo1)
 
         try? sut.remove(item: todo1)
         XCTAssertTrue(sut.isEmpty)

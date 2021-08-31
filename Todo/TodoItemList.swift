@@ -24,7 +24,10 @@ final class TodoItemList {
         self.name = name
     }
 
-    func add(item: TodoItem) {
+    func add(item: TodoItem) throws {
+        guard !self.items.contains(item) else {
+            throw ListError.duplicateEntry
+        }
         self.items.append(item)
     }
 
