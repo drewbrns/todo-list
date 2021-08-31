@@ -86,7 +86,7 @@ class TodoItemListTests: XCTestCase {
             thrownError = error
         }
 
-        XCTAssertTrue(thrownError is ItemListError)
+        XCTAssertTrue(thrownError is TodoItemList.ListError)
     }
 
     func test_removeItem_throws_error_when_item_is_not_in_list() {
@@ -97,7 +97,7 @@ class TodoItemListTests: XCTestCase {
             thrownError = error
         }
 
-        XCTAssertTrue(thrownError is ItemListError)
+        XCTAssertTrue(thrownError is TodoItemList.ListError)
     }
     
     func test_removeItem_from_list() {

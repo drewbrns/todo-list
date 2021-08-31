@@ -7,20 +7,6 @@
 
 import Foundation
 
-enum ItemListError: Error {
-    case moveError(Int)
-    case removeError
-
-    var reason: String {
-        switch self {
-        case .moveError(let position):
-            return "Cannot move item to this position: \(position)"
-        case .removeError:
-            return "Cannot remove item from list"
-        }
-    }
-}
-
 final class TodoItemList {
 
     private(set) var name: String
@@ -48,7 +34,7 @@ final class TodoItemList {
 
     func move(item: String, to index: Int) throws {
         guard let currentIndex = items.firstIndex(of: item) else {
-            throw ItemListError.moveError(index)
+            throw ListError.moveError(index)
         }
 
         items.remove(at: currentIndex)
@@ -57,9 +43,27 @@ final class TodoItemList {
 
     func remove(item: String) throws {
         guard let currentIndex = items.firstIndex(of: item) else {
-            throw ItemListError.removeError
+            throw ListError.removeError
         }
         items.remove(at: currentIndex)
+    }
+
+}
+
+extension TodoItemList {
+
+    enum ListError: Error {
+        case moveError(Int)
+        case removeError
+
+        var reason: String {
+            switch self {
+            case .moveError(let position):
+                return "Cannot move item to this position: \(position)"
+            case .removeError:
+                return "Cannot remove item from list"
+            }
+        }
     }
 
 }
