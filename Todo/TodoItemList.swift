@@ -24,7 +24,7 @@ final class TodoItemList {
         self.name = name
     }
 
-    func addItem(_ item: TodoItem) {
+    func add(item: TodoItem) {
         self.items.append(item)
     }
 
@@ -53,11 +53,14 @@ final class TodoItemList {
 extension TodoItemList {
 
     enum ListError: Error {
+        case duplicateEntry
         case moveError(Int)
         case removeError
 
         var reason: String {
             switch self {
+            case .duplicateEntry:
+                return "Cannot add item to list, a simarily variate of it already exists in this list"
             case .moveError(let position):
                 return "Cannot move item to this position: \(position)"
             case .removeError:

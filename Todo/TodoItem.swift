@@ -24,6 +24,5 @@ extension TodoItem: Equatable {
             lhs.dueDate == rhs.dueDate &&
             lhs.isComplete == rhs.isComplete &&
             lhs.notes == rhs.notes
-        
     }
 }
