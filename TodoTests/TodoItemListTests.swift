@@ -47,13 +47,9 @@ class TodoItemListTests: XCTestCase {
     }
 
     func test_itemForRow() {
-        let sut = makeSut()
-        let row = 0
-        let item = TodoItem(label: "A new item")
+        let sut = makeSut(items: [todos[0]])
 
-        try? sut.add(item: item)
-
-        XCTAssertEqual(sut.item(at: row), item)
+        XCTAssertEqual(sut.item(at: 0), todos[0])
     }
 
     func test_moveItem_to_index_0() {
