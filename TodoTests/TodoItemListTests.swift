@@ -114,10 +114,7 @@ class TodoItemListTests: XCTestCase {
     // MARK: Helpers
     
     func makeSut(items: [TodoItem] = []) -> TodoItemList {
-        let sut = TodoItemList(name: "Default List")
-        items.forEach {
-            try? sut.add(item: $0)
-        }
+        let sut = TodoItemList(name: "Default List", items: items)
         return sut
     }
 

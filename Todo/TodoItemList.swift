@@ -7,7 +7,18 @@
 
 import Foundation
 
-final class TodoItemList {
+protocol ItemList {
+    var name: String { get }
+    var count: Int { get }
+    var isEmpty: Bool { get }
+
+    func add(item: TodoItem) throws
+    func item(at index: Int) -> TodoItem
+    func move(item: TodoItem, to index: Int) throws
+    func remove(item: TodoItem) throws
+}
+
+final class TodoItemList: ItemList {
 
     private(set) var name: String
     private var items = [TodoItem]()
@@ -20,8 +31,9 @@ final class TodoItemList {
         return items.isEmpty
     }
 
-    init(name: String) {
+    init(name: String, items: [TodoItem] = []) {
         self.name = name
+        self.items = items
     }
 
     func add(item: TodoItem) throws {
