@@ -31,8 +31,9 @@ final class TodoItemList: ItemList {
         return items.isEmpty
     }
 
-    init(name: String) {
+    init(name: String, items: [TodoItem] = []) {
         self.name = name
+        self.items = items
     }
 
     func add(item: TodoItem) throws {
