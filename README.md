@@ -2,8 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Todo!
-A simple todo list application developed using the TDD approach
-
+A simple todo list application to demonstrate TDD, good architecture and design patterns.
 
 ## Requirements
 

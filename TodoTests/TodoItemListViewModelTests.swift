@@ -34,23 +34,25 @@ class TodoItemListViewModelTests: XCTestCase {
 
     // MARK: Helpers
 
-    final class MockTodoItemStore: TodoItemStore {
+    final class TodoItemStoreStub: TodoItemStore {
         typealias StoredObject = TodoItem
-
-        func loadObjects(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
-            let todos = [
+        let stub = (query: "a query", todos:
+            [
                 TodoItem(label: "Todo1"),
                 TodoItem(label: "Todo2"),
                 TodoItem(label: "Todo3"),
                 TodoItem(label: "Todo4")
             ]
-            completion(.success(todos))
+        )
+
+        func loadObjects(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
+            completion(.success(stub.todos))
         }
     }
 
-    func makeSUT() -> TodoItemListViewModel<MockTodoItemStore> {
+    func makeSUT() -> TodoItemListViewModel<TodoItemStoreStub> {
         let list = TodoItemList(name: "default list")
-        let store = MockTodoItemStore()
+        let store = TodoItemStoreStub()
         return TodoItemListViewModel(list: list, store: store)
     }
 
