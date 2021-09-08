@@ -18,23 +18,31 @@ class TodoItemListViewModelTests: XCTestCase {
         TodoItem(label: "Todo4")
     ]
 
-    func test_viewItemAtIndex() {
-        XCTAssertEqual(makeSUT().item(at: 0), todos[0])
+    func test_viewItemAtIndex_returns_item() {
+        let sut = makeSUT()
+        sut.fetchData()
+
+        XCTAssertEqual(sut.item(at: 0), todos[0])
     }
 
-    func test_viewItemAtInvalidIndex() {
-        XCTAssertNil(makeSUT().item(at: -1))
-        XCTAssertNil(makeSUT().item(at: 5))
+    func test_viewItem_with_invalidIndex_returns_nil() {
+        let sut = makeSUT()
+        sut.fetchData()
+
+        XCTAssertNil(sut.item(at: -1))
+        XCTAssertNil(sut.item(at: 5))
     }
 
     func test_count() {
-        XCTAssertEqual(makeSUT().count, todos.count)
+        let sut = makeSUT()
+        sut.fetchData()
+        XCTAssertEqual(sut.count, todos.count)
     }
 
 
     // MARK: Helpers
 
-    final class TodoItemStoreStub: TodoItemStore {
+    final class TodoItemStoreStub: TodoItemRepository {
         typealias StoredObject = TodoItem
         let stub = (query: "a query", todos:
             [

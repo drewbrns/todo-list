@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-protocol TodoItemStore {
+protocol TodoItemRepository {
     associatedtype StoredObject
 
     func loadObjects(completion: @escaping (Result<[StoredObject], Error>) -> Void)
 }
 
-final class TodoItemListViewModel<Store: TodoItemStore>: ObservableObject {
+final class TodoItemListViewModel<Store: TodoItemRepository>: ObservableObject {
 
     private var list: ItemList
     private var store: Store
@@ -25,8 +25,6 @@ final class TodoItemListViewModel<Store: TodoItemStore>: ObservableObject {
     init(list: ItemList, store: Store) {
         self.list = list
         self.store = store
-
-        self.fetchData()
     }
 
     var count: Int {
