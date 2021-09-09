@@ -37,9 +37,10 @@ class TodoItemListTests: XCTestCase {
     func test_addItem_throws_error_when_item_already_exists() throws {
         var thrownError: Error?
         let sut = makeSut()
-        try sut.add(item: TodoItem(label: "todo1"))
+        let todo = TodoItem(label: "todo1")
+        try sut.add(item: todo)
 
-        XCTAssertThrowsError(try sut.add(item: TodoItem(label: "todo1"))) { error  in
+        XCTAssertThrowsError(try sut.add(item: todo)) { error  in
             thrownError = error
         }
 

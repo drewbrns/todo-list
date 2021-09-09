@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct TodoItem {
+struct TodoItem: Identifiable {
+    var id: UUID = UUID()
     var label: String
     var dueDate: Date = .distantFuture
-    var isComplete: Bool = false
     var notes: String?
+    var isComplete: Bool = false
 
     var isDue: Bool {
         return dueDate < Date()
@@ -20,7 +21,8 @@ struct TodoItem {
 
 extension TodoItem: Equatable {
     static func ==(lhs: TodoItem, rhs: TodoItem) -> Bool {
-        return lhs.label == rhs.label &&
+        return lhs.id == rhs.id &&
+            lhs.label == rhs.label &&
             lhs.dueDate == rhs.dueDate &&
             lhs.isComplete == rhs.isComplete &&
             lhs.notes == rhs.notes

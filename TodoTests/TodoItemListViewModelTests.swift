@@ -36,32 +36,27 @@ class TodoItemListViewModelTests: XCTestCase {
     func test_count() {
         let sut = makeSUT()
         sut.fetchData()
+
         XCTAssertEqual(sut.count, todos.count)
     }
 
-
     // MARK: Helpers
 
-    final class TodoItemStoreStub: TodoItemRepository {
+    final class TodoItemRepositoryStub: TodoItemRepository {
         typealias StoredObject = TodoItem
-        let stub = (query: "a query", todos:
-            [
-                TodoItem(label: "Todo1"),
-                TodoItem(label: "Todo2"),
-                TodoItem(label: "Todo3"),
-                TodoItem(label: "Todo4")
-            ]
-        )
 
+        var todos = [TodoItem]()
+        
         func loadObjects(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
-            completion(.success(stub.todos))
+            completion(.success(todos))
         }
     }
 
-    func makeSUT() -> TodoItemListViewModel<TodoItemStoreStub> {
+    func makeSUT() -> TodoItemListViewModel<TodoItemRepositoryStub> {
         let list = TodoItemList(name: "default list")
-        let store = TodoItemStoreStub()
-        return TodoItemListViewModel(list: list, store: store)
+        let repository = TodoItemRepositoryStub()
+        repository.todos = todos
+        return TodoItemListViewModel(list: list, repository: repository)
     }
 
 }
