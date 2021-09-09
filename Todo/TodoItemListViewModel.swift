@@ -9,22 +9,21 @@ import Foundation
 import Combine
 
 protocol TodoItemRepository {
-    associatedtype StoredObject
-
-    func loadObjects(completion: @escaping (Result<[StoredObject], Error>) -> Void)
+    func loadObjects(completion: @escaping (Result<[TodoItem], Error>) -> Void)
+    func addObject(_ label: String, dueDate: Date, notes: String?) -> TodoItem
 }
 
-final class TodoItemListViewModel<Store: TodoItemRepository>: ObservableObject {
+final class TodoItemListViewModel: ObservableObject {
 
     private var list: ItemList
-    private var store: Store
-    
+    private var repository: TodoItemRepository
+
     @Published var onComplete: Bool = false
     @Published var onError: Error?
 
-    init(list: ItemList, store: Store) {
+    init(list: ItemList, repository: TodoItemRepository) {
         self.list = list
-        self.store = store
+        self.repository = repository
     }
 
     var count: Int {
@@ -37,19 +36,30 @@ final class TodoItemListViewModel<Store: TodoItemRepository>: ObservableObject {
     }
 
     func fetchData() {
-        self.store.loadObjects { [weak self] result in
+        self.repository.loadObjects { [weak self] result in
             switch result {
             case .success(let objects):
                 objects.forEach {
-                    if let _item = $0 as? TodoItem {
-                        try? self?.list.add(item: _item)
-                    }
+                    try? self?.list.add(item: $0)
                 }
                 self?.onComplete = true
             case .failure(let error):
                 self?.onError = error
             }
         }
+    }
+
+    func addTodo(label: String, dueDate: Date, notes: String?) {
+        let todoItem = self.repository.addObject(
+            label,
+            dueDate: dueDate,
+            notes: notes
+        )
+
+        try? self.list.add(item: todoItem)
+    }
+
+    func deleteTodo() {
     }
 
 }
