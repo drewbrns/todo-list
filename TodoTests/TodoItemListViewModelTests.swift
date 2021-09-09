@@ -55,7 +55,11 @@ class TodoItemListViewModelTests: XCTestCase {
     final class TodoItemRepositoryStub: TodoItemRepository {
         var todos = [TodoItem]()
 
-        func addObject(_ label: String, dueDate: Date, notes: String?) -> TodoItem {
+        func load(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
+            completion(.success(todos))
+        }
+
+        func add(label: String, dueDate: Date, notes: String?) -> TodoItem {
             let item = TodoItem(
                 label: label,
                 dueDate: dueDate,
@@ -64,10 +68,7 @@ class TodoItemListViewModelTests: XCTestCase {
             todos.append(item)
             return item
         }
-        
-        func loadObjects(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
-            completion(.success(todos))
-        }
+
     }
 
     func makeSUT() -> TodoItemListViewModel {

@@ -9,8 +9,9 @@ import Foundation
 import Combine
 
 protocol TodoItemRepository {
-    func loadObjects(completion: @escaping (Result<[TodoItem], Error>) -> Void)
-    func addObject(_ label: String, dueDate: Date, notes: String?) -> TodoItem
+    func load(completion: @escaping (Result<[TodoItem], Error>) -> Void)
+    func add(label: String, dueDate: Date, notes: String?) -> TodoItem
+    
 }
 
 final class TodoItemListViewModel: ObservableObject {
@@ -36,7 +37,7 @@ final class TodoItemListViewModel: ObservableObject {
     }
 
     func fetchData() {
-        self.repository.loadObjects { [weak self] result in
+        self.repository.load { [weak self] result in
             switch result {
             case .success(let objects):
                 objects.forEach {
@@ -50,8 +51,8 @@ final class TodoItemListViewModel: ObservableObject {
     }
 
     func addTodo(label: String, dueDate: Date, notes: String?) {
-        let todoItem = self.repository.addObject(
-            label,
+        let todoItem = self.repository.add(
+            label: label,
             dueDate: dueDate,
             notes: notes
         )
