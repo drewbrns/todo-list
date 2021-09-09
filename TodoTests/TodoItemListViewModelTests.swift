@@ -36,32 +36,46 @@ class TodoItemListViewModelTests: XCTestCase {
     func test_count() {
         let sut = makeSUT()
         sut.fetchData()
+
         XCTAssertEqual(sut.count, todos.count)
     }
 
+    func test_addTodo_stores_item_in_repository_and_updates_list() {
+        let sut = makeSUT()
+
+        sut.addTodo(label: "A todo", dueDate: Date(), notes: "nicely done")
+        XCTAssertEqual(sut.count, 1)
+
+        sut.addTodo(label: "A todo", dueDate: Date(), notes: "nicely done")
+        XCTAssertEqual(sut.count, 2)
+    }
 
     // MARK: Helpers
 
-    final class TodoItemStoreStub: TodoItemRepository {
-        typealias StoredObject = TodoItem
-        let stub = (query: "a query", todos:
-            [
-                TodoItem(label: "Todo1"),
-                TodoItem(label: "Todo2"),
-                TodoItem(label: "Todo3"),
-                TodoItem(label: "Todo4")
-            ]
-        )
+    final class TodoItemRepositoryStub: TodoItemRepository {
+        var todos = [TodoItem]()
 
+        func addObject(_ label: String, dueDate: Date, notes: String?) -> TodoItem {
+            let item = TodoItem(
+                label: label,
+                dueDate: dueDate,
+                notes: notes
+            )
+            todos.append(item)
+            return item
+        }
+        
         func loadObjects(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
-            completion(.success(stub.todos))
+            completion(.success(todos))
         }
     }
 
-    func makeSUT() -> TodoItemListViewModel<TodoItemStoreStub> {
+    func makeSUT() -> TodoItemListViewModel {
         let list = TodoItemList(name: "default list")
-        let store = TodoItemStoreStub()
-        return TodoItemListViewModel(list: list, store: store)
+        let repository = TodoItemRepositoryStub()
+        repository.todos = todos
+
+        return TodoItemListViewModel(list: list, repository: repository)
     }
 
 }
