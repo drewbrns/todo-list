@@ -19,23 +19,23 @@ class TodoItemListViewModelTests: XCTestCase {
     ]
 
     func test_viewItemAtIndex_returns_item() {
-        let sut = makeSUT()
-        sut.fetchData()
+        let sut = makeSUT(items: todos)
+        sut.fetchTodos()
 
         XCTAssertEqual(sut.item(at: 0), todos[0])
     }
 
     func test_viewItem_with_invalidIndex_returns_nil() {
         let sut = makeSUT()
-        sut.fetchData()
+        sut.fetchTodos()
 
         XCTAssertNil(sut.item(at: -1))
         XCTAssertNil(sut.item(at: 5))
     }
 
     func test_count() {
-        let sut = makeSUT()
-        sut.fetchData()
+        let sut = makeSUT(items: todos)
+        sut.fetchTodos()
 
         XCTAssertEqual(sut.count, todos.count)
     }
@@ -50,12 +50,29 @@ class TodoItemListViewModelTests: XCTestCase {
         XCTAssertEqual(sut.count, 2)
     }
 
+    func test_deleteTodo_removes_item_from_repository_and_updates_list() {
+        let item = todos[0]
+        let sut = makeSUT(items: [item])
+        sut.fetchTodos()
+
+        XCTAssertEqual(sut.count, 1)
+
+        sut.deleteTodo(item)
+
+        XCTAssertEqual(sut.count, 0)
+    }
+    
     // MARK: Helpers
 
     final class TodoItemRepositoryStub: TodoItemRepository {
+
         var todos = [TodoItem]()
 
-        func addObject(_ label: String, dueDate: Date, notes: String?) -> TodoItem {
+        func load(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
+            completion(.success(todos))
+        }
+
+        func add(label: String, dueDate: Date, notes: String?) -> TodoItem {
             let item = TodoItem(
                 label: label,
                 dueDate: dueDate,
@@ -64,16 +81,23 @@ class TodoItemListViewModelTests: XCTestCase {
             todos.append(item)
             return item
         }
-        
-        func loadObjects(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
-            completion(.success(todos))
+
+        func remove(id: TodoItem.ID, completion: @escaping (Result<Void, Error>) -> Void) {
+            if let found = todos.firstIndex(where: { $0.id == id }) {
+                todos.remove(at: found)
+                completion(.success(()))
+            } else {
+                let error = RepositoryError.recordNotFound
+                completion(.failure(error))
+            }
         }
+
     }
 
-    func makeSUT() -> TodoItemListViewModel {
+    func makeSUT(items: [TodoItem] = []) -> TodoItemListViewModel {
         let list = TodoItemList(name: "default list")
         let repository = TodoItemRepositoryStub()
-        repository.todos = todos
+        repository.todos = items
 
         return TodoItemListViewModel(list: list, repository: repository)
     }
