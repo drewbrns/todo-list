@@ -8,10 +8,14 @@
 import Foundation
 import Combine
 
+enum RepositoryError: Error {
+    case recordNotFound
+}
+
 protocol TodoItemRepository {
     func load(completion: @escaping (Result<[TodoItem], Error>) -> Void)
     func add(label: String, dueDate: Date, notes: String?) -> TodoItem
-    
+    func remove(id: TodoItem.ID, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class TodoItemListViewModel: ObservableObject {
@@ -36,7 +40,7 @@ final class TodoItemListViewModel: ObservableObject {
         return list.item(at: index)
     }
 
-    func fetchData() {
+    func fetchTodos() {
         self.repository.load { [weak self] result in
             switch result {
             case .success(let objects):
@@ -57,10 +61,28 @@ final class TodoItemListViewModel: ObservableObject {
             notes: notes
         )
 
-        try? self.list.add(item: todoItem)
+        do {
+            try self.list.add(item: todoItem)
+            self.onComplete = true
+        } catch let error {
+            self.onError = error
+        }
     }
 
-    func deleteTodo() {
+    func deleteTodo(_ item: TodoItem) {
+        self.repository.remove(id: item.id) { [weak self] result in
+            switch result {
+            case .success():
+                do {
+                    try self?.list.remove(item: item)
+                    self?.onComplete = true
+                } catch let error {
+                    self?.onError = error
+                }
+            case .failure(let error):
+                self?.onError = error
+            }
+        }
     }
 
 }
