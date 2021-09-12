@@ -1,5 +1,6 @@
 [![Swift Version][swift-image]][swift-url]
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/drewbrns/todo-list/actions/workflows/CI.yml/badge.svg)](https://github.com/drewbrns/todo-list/actions/workflows/CI.yml)
 
 # Todo!
 A simple todo list application to demonstrate TDD, good architecture and design patterns.
