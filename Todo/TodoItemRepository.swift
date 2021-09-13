@@ -13,6 +13,6 @@ enum RepositoryError: Error {
 
 protocol TodoItemRepository {
     func load(completion: @escaping (Result<[TodoItem], Error>) -> Void)
-    func add(label: String, dueDate: Date, notes: String?) -> TodoItem
-    func remove(id: TodoItem.ID, completion: @escaping (Result<Void, Error>) -> Void)
+    func add(label: String, dueDate: Date, notes: String?, completion: @escaping (Result<TodoItem, Error>) -> Void)
+    func remove(id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void)
 }

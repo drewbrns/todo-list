@@ -47,24 +47,29 @@ final class TodoItemListViewModel: ObservableObject {
     }
 
     func addTodo(label: String, dueDate: Date, notes: String?) {
-        let todoItem = self.repository.add(
+        self.repository.add(
             label: label,
             dueDate: dueDate,
             notes: notes
-        )
-
-        do {
-            try self.list.add(item: todoItem)
-            self.onAddComplete = true
-        } catch let error {
-            self.onError = error
+        ) { [weak self] result in
+            switch result {
+            case .success(let todoItem):
+                do {
+                    try self?.list.add(item: todoItem)
+                    self?.onAddComplete = true
+                } catch let error {
+                    self?.onError = error
+                }
+            case .failure(let error):
+                self?.onError = error
+            }
         }
     }
 
-    func deleteTodo(_ item: TodoItem) {
-        self.repository.remove(id: item.id) { [weak self] result in
+    func deleteTodo(_ itemId: TodoItem.ID) {
+        self.repository.remove(id: itemId) { [weak self] result in
             switch result {
-            case .success():
+            case .success(let item):
                 do {
                     try self?.list.remove(item: item)
                     self?.onRemoveComplete = true

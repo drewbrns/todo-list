@@ -57,7 +57,7 @@ class TodoItemListViewModelTests: XCTestCase {
 
         XCTAssertEqual(sut.count, 1)
 
-        sut.deleteTodo(item)
+        sut.deleteTodo(item.id)
 
         XCTAssertEqual(sut.count, 0)
     }
@@ -65,7 +65,6 @@ class TodoItemListViewModelTests: XCTestCase {
     func test_moveTodo_shits_item_from_its_position_to_given_position() {
         let item = todos[0]
         let sut = makeSUT(items: [item])
-
     }
     
     // MARK: Helpers
@@ -78,20 +77,21 @@ class TodoItemListViewModelTests: XCTestCase {
             completion(.success(todos))
         }
 
-        func add(label: String, dueDate: Date, notes: String?) -> TodoItem {
+        func add(label: String, dueDate: Date, notes: String?, completion: @escaping (Result<TodoItem, Error>) -> Void) {
             let item = TodoItem(
                 label: label,
                 dueDate: dueDate,
                 notes: notes
             )
-            todos.append(item)
-            return item
+
+            completion(.success(item))
         }
 
-        func remove(id: TodoItem.ID, completion: @escaping (Result<Void, Error>) -> Void) {
+        func remove(id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void) {
             if let found = todos.firstIndex(where: { $0.id == id }) {
+                let item = todos[found]
                 todos.remove(at: found)
-                completion(.success(()))
+                completion(.success(item))
             } else {
                 let error = RepositoryError.recordNotFound
                 completion(.failure(error))
