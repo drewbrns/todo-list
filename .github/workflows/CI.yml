@@ -16,6 +16,9 @@ jobs:
 
     # - name: Testing....display available Xcodes on the Server
     #   run: ls /Applications | grep Xcode
+
+    - name: List all simulators
+      run: xcrun simctl list
     
     - name: Select Xcode Version
       run: sudo xcode-select -switch /Applications/Xcode_12.4.0.app
