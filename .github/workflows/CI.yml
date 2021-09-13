@@ -20,7 +20,7 @@ jobs:
     # - name: List all simulators
     #   run: xcrun simctl list
     
-    - name: Select Xcode Version
+    - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_12.app
 
     - name: Build and test
