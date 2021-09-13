@@ -61,6 +61,12 @@ class TodoItemListViewModelTests: XCTestCase {
 
         XCTAssertEqual(sut.count, 0)
     }
+
+    func test_moveTodo_shits_item_from_its_position_to_given_position() {
+        let item = todos[0]
+        let sut = makeSUT(items: [item])
+
+    }
     
     // MARK: Helpers
 

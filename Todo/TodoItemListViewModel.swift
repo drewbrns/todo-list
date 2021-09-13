@@ -23,8 +23,10 @@ final class TodoItemListViewModel: ObservableObject {
     private var list: ItemList
     private var repository: TodoItemRepository
 
-    @Published var onComplete: Bool = false
-    @Published var onError: Error?
+    @Published private(set) var onFetchComplete: Bool = false
+    @Published private(set) var onAddComplete: Bool = false
+    @Published private(set) var onRemoveComplete: Bool = false
+    @Published private(set) var onError: Error?
 
     init(list: ItemList, repository: TodoItemRepository) {
         self.list = list
@@ -47,7 +49,7 @@ final class TodoItemListViewModel: ObservableObject {
                 objects.forEach {
                     try? self?.list.add(item: $0)
                 }
-                self?.onComplete = true
+                self?.onFetchComplete = true
             case .failure(let error):
                 self?.onError = error
             }
@@ -63,7 +65,7 @@ final class TodoItemListViewModel: ObservableObject {
 
         do {
             try self.list.add(item: todoItem)
-            self.onComplete = true
+            self.onAddComplete = true
         } catch let error {
             self.onError = error
         }
@@ -75,7 +77,7 @@ final class TodoItemListViewModel: ObservableObject {
             case .success():
                 do {
                     try self?.list.remove(item: item)
-                    self?.onComplete = true
+                    self?.onRemoveComplete = true
                 } catch let error {
                     self?.onError = error
                 }
