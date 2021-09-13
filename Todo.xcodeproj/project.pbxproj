@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A32766026EF59F500B092FB /* TodoItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A32765F26EF59F500B092FB /* TodoItemRepository.swift */; };
 		3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16526DDAB26008B8673 /* AppDelegate.swift */; };
 		3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */; };
 		3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16E26DDAB27008B8673 /* Todo.xcdatamodeld */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A32765F26EF59F500B092FB /* TodoItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemRepository.swift; sourceTree = "<group>"; };
 		3ADAF16226DDAB26008B8673 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADAF16526DDAB26008B8673 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				3ADAF1A126DF0C03008B8673 /* TodoItemListViewModel.swift */,
 				3ADAF19B26DE6D39008B8673 /* TodoItemList.swift */,
 				3ADAF19F26DE9BAC008B8673 /* TodoItem.swift */,
+				3A32765F26EF59F500B092FB /* TodoItemRepository.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				3ADAF1A026DE9BAD008B8673 /* TodoItem.swift in Sources */,
 				3ADAF19C26DE6D3A008B8673 /* TodoItemList.swift in Sources */,
 				3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */,
+				3A32766026EF59F500B092FB /* TodoItemRepository.swift in Sources */,
 				3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */,
 				3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */,
 				3ADAF1A226DF0C03008B8673 /* TodoItemListViewModel.swift in Sources */,
