@@ -10,8 +10,8 @@ import XCTest
 
 class TodoViewControllerTests: XCTestCase {
 
-    func test_init() throws {
-        let sut = makeSut()
+    func test_init() {
+        let sut = makeSut().vc
 
         XCTAssertNotNil(sut.tableView)
         XCTAssertNotNil(sut.addButton)
@@ -20,15 +20,28 @@ class TodoViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.vm)
     }
 
-    func test_viewDidLoad_rendersTitle() throws {
-        let sut = makeSut()
+    func test_viewDidLoad_rendersTitle() {
+        let sut = makeSut().vc
 
         XCTAssertEqual(sut.title, "Default List")
     }
-    
+
+    func test_viewDidLoad_performs_fetchTodos() throws {
+        let sut = makeSut()
+        sut.repo.items = [
+            TodoItem(label: "todo #1"),
+            TodoItem(label: "todo #2")
+        ]
+
+        sut.repo.load { _ in
+            XCTAssertEqual(sut.vc.tableView.numberOfSections, 1)
+            XCTAssertEqual(sut.vc.tableView.numberOfRows(inSection: 0), 2)
+        }
+    }
+
     // MARK: Helpers
     
-    func makeSut() -> TodoViewController {
+    func makeSut() -> (vc: TodoViewController, repo: TodoItemRepositoryStub) {
 
         let list = TodoItemList(name: "Default List")
         let repository = TodoItemRepositoryStub()
@@ -40,7 +53,7 @@ class TodoViewControllerTests: XCTestCase {
 
         let sut = TodoViewController(viewModel: viewModel)
         sut.loadViewIfNeeded()
-        return sut
+        return (sut, repository)
     }
 
     final class TodoItemRepositoryStub: TodoItemRepository {
