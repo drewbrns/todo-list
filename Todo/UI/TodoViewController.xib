@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y2f-3o-Vqy">
-                    <rect key="frame" x="16" y="44" width="358" height="686"/>
+                    <rect key="frame" x="0.0" y="44" width="390" height="686"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ayu-xI-cfV"/>
@@ -44,8 +44,8 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Y2f-3o-Vqy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="3lY-BF-7pI"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y2f-3o-Vqy" secondAttribute="trailing" constant="16" id="JOp-nd-bET"/>
+                <constraint firstItem="Y2f-3o-Vqy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3lY-BF-7pI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y2f-3o-Vqy" secondAttribute="trailing" id="JOp-nd-bET"/>
                 <constraint firstItem="Y2f-3o-Vqy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="WUr-Zq-kAc"/>
                 <constraint firstItem="Pfm-zV-dh2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="ajp-iW-ftZ"/>
                 <constraint firstItem="Pfm-zV-dh2" firstAttribute="top" secondItem="Y2f-3o-Vqy" secondAttribute="bottom" constant="24" id="j15-vx-DyN"/>

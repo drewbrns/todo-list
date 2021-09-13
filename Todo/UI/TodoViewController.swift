@@ -21,8 +21,18 @@ class TodoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupTableView()
+
         title = vm.name
         vm.fetchTodos()
+    }
+
+    private func setupTableView() {
+        self.tableView.tableFooterView = UIView()
+        self.tableView.register(
+            TodoItemCell.self, forCellReuseIdentifier: TodoItemCell.cellId
+        )
     }
 
 }
@@ -39,7 +49,14 @@ extension TodoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: TodoItemCell.cellId,
+                for: indexPath
+        ) as? TodoItemCell else {
+            fatalError("Expected TodoItemCell")
+        }
+        
+        return cell
     }
 
 }
