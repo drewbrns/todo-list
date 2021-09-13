@@ -18,6 +18,12 @@ class TodoItemListViewModelTests: XCTestCase {
         TodoItem(label: "Todo4")
     ]
 
+    func test_name_returns_listName() {
+        let sut = makeSUT(items: todos)
+
+        XCTAssertEqual(sut.name, "default list")
+    }
+    
     func test_viewItemAtIndex_returns_item() {
         let sut = makeSUT(items: todos)
         sut.fetchTodos()

@@ -18,6 +18,10 @@ final class TodoItemListViewModel: ObservableObject {
     @Published private(set) var onRemoveComplete: Bool = false
     @Published private(set) var onError: Error?
 
+    var name: String {
+        return self.list.name
+    }
+
     init(list: ItemList, repository: TodoItemRepository) {
         self.list = list
         self.repository = repository
