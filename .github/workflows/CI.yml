@@ -24,4 +24,4 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_12.4.0.app
 
     - name: Build and test
-      run: xcodebuild clean build test -project Todo.xcodeproj -scheme CI -sdk iphonesimulator -destination "platform=iOS Simulator,id=6819A967-AE04-4846-A69E-414414224405" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+      run: xcodebuild clean build test -project Todo.xcodeproj -scheme CI -sdk iphonesimulator -destination "platform=iOS,id=6819A967-AE04-4846-A69E-414414224405" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
