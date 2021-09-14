@@ -18,6 +18,12 @@ class TodoItemListViewModelTests: XCTestCase {
         TodoItem(label: "Todo4")
     ]
 
+    func test_name_returns_listName() {
+        let sut = makeSUT(items: todos)
+
+        XCTAssertEqual(sut.name, "default list")
+    }
+    
     func test_viewItemAtIndex_returns_item() {
         let sut = makeSUT(items: todos)
         sut.fetchTodos()
@@ -57,11 +63,11 @@ class TodoItemListViewModelTests: XCTestCase {
 
         XCTAssertEqual(sut.count, 1)
 
-        sut.deleteTodo(item)
+        sut.deleteTodo(item.id)
 
         XCTAssertEqual(sut.count, 0)
     }
-    
+
     // MARK: Helpers
 
     final class TodoItemRepositoryStub: TodoItemRepository {
@@ -72,20 +78,21 @@ class TodoItemListViewModelTests: XCTestCase {
             completion(.success(todos))
         }
 
-        func add(label: String, dueDate: Date, notes: String?) -> TodoItem {
+        func add(label: String, dueDate: Date, notes: String?, completion: @escaping (Result<TodoItem, Error>) -> Void) {
             let item = TodoItem(
                 label: label,
                 dueDate: dueDate,
                 notes: notes
             )
-            todos.append(item)
-            return item
+
+            completion(.success(item))
         }
 
-        func remove(id: TodoItem.ID, completion: @escaping (Result<Void, Error>) -> Void) {
+        func remove(id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void) {
             if let found = todos.firstIndex(where: { $0.id == id }) {
+                let item = todos[found]
                 todos.remove(at: found)
-                completion(.success(()))
+                completion(.success(item))
             } else {
                 let error = RepositoryError.recordNotFound
                 completion(.failure(error))
