@@ -27,7 +27,6 @@ class TodoViewControllerTests: XCTestCase {
     }
 
     func test_viewDidLoad_performs_fetchTodos() {
-                
         let sut = makeSut(items: [
             TodoItem(label: "todo #1"),
             TodoItem(label: "todo #2")
@@ -43,12 +42,12 @@ class TodoViewControllerTests: XCTestCase {
             TodoItem(label: "todo #2")
         ])
 
-        let cell = sut.vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TodoItemCell
-        XCTAssertNotNil(cell.titleLabel)
-        XCTAssertNotNil(cell.subTitleLabel)
-        XCTAssertNotNil(cell.dateLabel)
-        XCTAssertNotNil(cell.checkMarkView)
-        XCTAssertNotNil(cell.checkMarkInnerView)
+        let cell = sut.vc.tableView.cell(at: 0)
+        XCTAssertNotNil(cell?.titleLabel)
+        XCTAssertNotNil(cell?.subTitleLabel)
+        XCTAssertNotNil(cell?.dateLabel)
+        XCTAssertNotNil(cell?.checkMarkView)
+        XCTAssertNotNil(cell?.checkMarkInnerView)
     }
 
     func test_viewDidLoad_rendersTodoItems() throws {
@@ -97,10 +96,14 @@ class TodoViewControllerTests: XCTestCase {
             completion(.success(items))
         }
 
-        func add(label: String, dueDate: Date, notes: String?, completion: @escaping (Result<TodoItem, Error>) -> Void) {
+        func add(
+            label: String, dueDate: Date, notes: String?,
+            completion: @escaping (Result<TodoItem, Error>) -> Void) {
         }
 
-        func remove(id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void) {
+        func remove(
+            id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void
+        ) {
         }
     }
 
