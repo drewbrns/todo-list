@@ -26,31 +26,30 @@ class TodoViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.title, "Default List")
     }
 
-    func test_viewDidLoad_performs_fetchTodos() throws {
-        let sut = makeSut()
-        sut.repo.items = [
+    func test_viewDidLoad_performs_fetchTodos() {
+                
+        let sut = makeSut(items: [
             TodoItem(label: "todo #1"),
             TodoItem(label: "todo #2")
-        ]
+        ])
 
-        sut.repo.load { _ in
-            XCTAssertEqual(sut.vc.tableView.numberOfSections, 1)
-            XCTAssertEqual(sut.vc.tableView.numberOfRows(inSection: 0), 2)
-        }
+        XCTAssertEqual(sut.vc.tableView.numberOfSections, 1)
+        XCTAssertEqual(sut.vc.tableView.numberOfRows(inSection: 0), 2)
     }
 
     // MARK: Helpers
     
-    func makeSut() -> (vc: TodoViewController, repo: TodoItemRepositoryStub) {
+    func makeSut(items: [TodoItem] = []) -> (vc: TodoViewController, repo: TodoItemRepositoryStub) {
 
         let list = TodoItemList(name: "Default List")
         let repository = TodoItemRepositoryStub()
+        repository.items = items
 
         let viewModel = TodoItemListViewModel(
             list: list,
             repository: repository
         )
-
+        
         let sut = TodoViewController(viewModel: viewModel)
         sut.loadViewIfNeeded()
         return (sut, repository)
@@ -60,14 +59,14 @@ class TodoViewControllerTests: XCTestCase {
         var items = [TodoItem]()
 
         func load(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
-        }
-        
-        func add(label: String, dueDate: Date, notes: String?, completion: @escaping (Result<TodoItem, Error>) -> Void) {
-        }
-        
-        func remove(id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void) {
+            completion(.success(items))
         }
 
+        func add(label: String, dueDate: Date, notes: String?, completion: @escaping (Result<TodoItem, Error>) -> Void) {
+        }
+
+        func remove(id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void) {
+        }
     }
-    
+
 }

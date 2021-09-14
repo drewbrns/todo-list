@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class TodoViewController: UIViewController {
 
@@ -13,6 +14,7 @@ class TodoViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
 
     private(set) var vm: TodoItemListViewModel!
+    private var cancellables: Set<AnyCancellable> = []
 
     convenience init(viewModel: TodoItemListViewModel) {
         self.init()
@@ -23,16 +25,24 @@ class TodoViewController: UIViewController {
         super.viewDidLoad()
 
         setupTableView()
+        bindVm()
 
         title = vm.name
         vm.fetchTodos()
     }
 
     private func setupTableView() {
-        self.tableView.tableFooterView = UIView()
         self.tableView.register(
-            TodoItemCell.self, forCellReuseIdentifier: TodoItemCell.cellId
+            UINib(nibName: TodoItemCell.cellId, bundle: nil),
+            forCellReuseIdentifier: TodoItemCell.cellId
         )
+        self.tableView.tableFooterView = UIView()
+    }
+
+    private func bindVm() {
+        vm.$onFetchComplete.sink { _ in
+            self.tableView.reloadData()
+        }.store(in: &cancellables)
     }
 
 }
