@@ -9,7 +9,7 @@ import UIKit
 
 class TodoItemCell: UITableViewCell {
 
-    static let cellId = String(describing: self)
+    static let cellId = "TodoItemCell"
 
     private var activeColor = UIColor(
         red: 164 / 255,
@@ -18,25 +18,28 @@ class TodoItemCell: UITableViewCell {
         alpha: 1
     )
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var checkMarkView: UIView!
-    @IBOutlet weak var checkMarkInnerView: UIView!
+    @IBOutlet weak private(set) var titleLabel: UILabel!
+    @IBOutlet weak private(set) var subTitleLabel: UILabel!
+    @IBOutlet weak private(set) var dateLabel: UILabel!
+    @IBOutlet weak private(set) var checkMarkView: UIView!
+    @IBOutlet weak private(set) var checkMarkInnerView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        checkMarkView.layer.cornerRadius = 15
-        checkMarkView.clipsToBounds = true
-        checkMarkInnerView.layer.cornerRadius = 12
-        checkMarkInnerView.clipsToBounds = true
+        layoutCheckMarkViewAsRounded()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func configure(with vm: TodoItemViewModel) {
+        self.titleLabel.text = vm.label
+        self.subTitleLabel.text = vm.notes
+        self.dateLabel.text = vm.dueDate
+        renderCheckmarkView(isComplete: vm.isComplete)
     }
 
     @IBAction func completeTaskButtonTapped(_ sender: Any) {
@@ -48,5 +51,12 @@ class TodoItemCell: UITableViewCell {
         } else {
             self.checkMarkView.backgroundColor = .white
         }
+    }
+
+    private func layoutCheckMarkViewAsRounded() {
+        checkMarkView.layer.cornerRadius = 15
+        checkMarkView.clipsToBounds = true
+        checkMarkInnerView.layer.cornerRadius = 12
+        checkMarkInnerView.clipsToBounds = true
     }
 }
