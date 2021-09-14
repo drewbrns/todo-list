@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3A0AE63126F010820011851C /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AE63026F010820011851C /* Date+Additions.swift */; };
 		3A0AE63326F019740011851C /* TodoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AE63226F019740011851C /* TodoItemViewModel.swift */; };
+		3A0AE63726F0278D0011851C /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AE63526F0278D0011851C /* AddTodoViewController.swift */; };
+		3A0AE63826F0278D0011851C /* AddTodoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0AE63626F0278D0011851C /* AddTodoViewController.xib */; };
 		3A32766026EF59F500B092FB /* TodoItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A32765F26EF59F500B092FB /* TodoItemRepository.swift */; };
 		3A32766426EF657800B092FB /* TodoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A32766326EF657800B092FB /* TodoViewControllerTests.swift */; };
 		3A32766726EF669500B092FB /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A32766526EF669500B092FB /* TodoViewController.swift */; };
@@ -49,6 +51,8 @@
 /* Begin PBXFileReference section */
 		3A0AE63026F010820011851C /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
 		3A0AE63226F019740011851C /* TodoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemViewModel.swift; sourceTree = "<group>"; };
+		3A0AE63526F0278D0011851C /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
+		3A0AE63626F0278D0011851C /* AddTodoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTodoViewController.xib; sourceTree = "<group>"; };
 		3A32765F26EF59F500B092FB /* TodoItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemRepository.swift; sourceTree = "<group>"; };
 		3A32766326EF657800B092FB /* TodoViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewControllerTests.swift; sourceTree = "<group>"; };
 		3A32766526EF669500B092FB /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
@@ -108,13 +112,31 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		3A32766D26EFA23900B092FB /* UI */ = {
+		3A0AE63926F027ED0011851C /* List */ = {
 			isa = PBXGroup;
 			children = (
 				3A32766526EF669500B092FB /* TodoViewController.swift */,
 				3A32766626EF669500B092FB /* TodoViewController.xib */,
 				3A32766926EF8E7600B092FB /* TodoItemCell.swift */,
 				3A32766A26EF8E7600B092FB /* TodoItemCell.xib */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		3A0AE63A26F027FA0011851C /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				3A0AE63526F0278D0011851C /* AddTodoViewController.swift */,
+				3A0AE63626F0278D0011851C /* AddTodoViewController.xib */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		3A32766D26EFA23900B092FB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3A0AE63926F027ED0011851C /* List */,
+				3A0AE63A26F027FA0011851C /* Add */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -308,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A0AE63826F0278D0011851C /* AddTodoViewController.xib in Resources */,
 				3ADAF17526DDAB2C008B8673 /* LaunchScreen.storyboard in Resources */,
 				3ADAF17226DDAB2C008B8673 /* Assets.xcassets in Resources */,
 				3A32766C26EF8E7600B092FB /* TodoItemCell.xib in Resources */,
@@ -340,6 +363,7 @@
 				3ADAF1A026DE9BAD008B8673 /* TodoItem.swift in Sources */,
 				3ADAF19C26DE6D3A008B8673 /* TodoItemList.swift in Sources */,
 				3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */,
+				3A0AE63726F0278D0011851C /* AddTodoViewController.swift in Sources */,
 				3A32766B26EF8E7600B092FB /* TodoItemCell.swift in Sources */,
 				3A32766026EF59F500B092FB /* TodoItemRepository.swift in Sources */,
 				3A0AE63326F019740011851C /* TodoItemViewModel.swift in Sources */,
