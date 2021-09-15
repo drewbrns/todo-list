@@ -58,8 +58,8 @@ extension TodoViewController {
     }
 
     private func bindFetchCompletePublisher() {
-        vm.$onFetchComplete.sink { _ in
-            self.tableView.reloadData()
+        vm.$onFetchComplete.sink { [weak self] _ in
+            self?.tableView.reloadData()
         }.store(in: &cancellables)
     }
 
@@ -88,6 +88,8 @@ extension TodoViewController: UITableViewDataSource {
             cell.configure(with: TodoItemViewModel(
                 todoItem: item
             ))
+        } else {
+            cell.configure(with: nil)
         }
         return cell
     }
