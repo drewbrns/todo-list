@@ -65,11 +65,6 @@ final class TodoItemList: ItemList {
 
 }
 
-protocol Exception {
-    var message: String { get }
-}
-
-
 extension TodoItemList {
 
     struct DuplicateEntryListError: Error & Exception {
