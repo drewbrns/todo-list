@@ -28,7 +28,7 @@ class TodoItemListViewModelTests: XCTestCase {
         let sut = makeSUT(items: todos)
         sut.fetchTodos()
 
-        XCTAssertEqual(sut.item(at: 0), todos[0])
+        XCTAssertEqual(sut.item(at: 0)?.todoItem, todos[0])
     }
 
     func test_viewItem_with_invalidIndex_returns_nil() {

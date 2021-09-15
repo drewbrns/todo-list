@@ -84,13 +84,9 @@ extension TodoViewController: UITableViewDataSource {
         ) as? TodoItemCell else {
             fatalError("Expected TodoItemCell")
         }
-        if let item = vm.item(at: indexPath.row) {
-            cell.configure(with: TodoItemViewModel(
-                todoItem: item
-            ))
-        } else {
-            cell.configure(with: nil)
-        }
+
+        cell.configure(with: vm.item(at: indexPath.row))
+
         return cell
     }
 
