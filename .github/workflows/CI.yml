@@ -20,8 +20,8 @@ jobs:
     # - name: List all simulators
     #   run: xcrun simctl list
     
-    - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_12.app
+    # - name: Select Xcode
+    #   run: sudo xcode-select -switch /Applications/Xcode_12.app
 
     - name: List all destinations
       run: xcodebuild -project Todo.xcodeproj -scheme CI -showdestinations
