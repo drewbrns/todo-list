@@ -29,4 +29,4 @@ jobs:
     # - name: Build and test
     #   run: xcodebuild clean build test -project Todo.xcodeproj -scheme "CI" -sdk iphonesimulator -destination "generic/platform=iOS Simulator" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
     - name: Compile and run tests
-      run: fastlane scan --scheme "CI"
+      run: fastlane scan --scheme "CI" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
