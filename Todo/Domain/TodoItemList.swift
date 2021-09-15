@@ -38,7 +38,7 @@ final class TodoItemList: ItemList {
 
     func add(item: TodoItem) throws {
         guard !self.items.contains(item) else {
-            throw ListError.duplicateEntry
+            throw DuplicateEntryListError()
         }
         self.items.append(item)
     }
@@ -49,7 +49,7 @@ final class TodoItemList: ItemList {
 
     func move(item: TodoItem, to index: Int) throws {
         guard let currentIndex = items.firstIndex(of: item) else {
-            throw ListError.moveError(index)
+            throw MoveItemListError(position: index)
         }
 
         items.remove(at: currentIndex)
@@ -58,30 +58,42 @@ final class TodoItemList: ItemList {
 
     func remove(item: TodoItem) throws {
         guard let currentIndex = items.firstIndex(of: item) else {
-            throw ListError.removeError
+            throw RemoveItemListError()
         }
         items.remove(at: currentIndex)
     }
 
 }
 
+protocol Exception {
+    var message: String { get }
+}
+
+
 extension TodoItemList {
 
-    enum ListError: Error {
-        case duplicateEntry
-        case moveError(Int)
-        case removeError
-
-        var reason: String {
-            switch self {
-            case .duplicateEntry:
-                return "Cannot add item to list, a simarily variate of it already exists in this list"
-            case .moveError(let position):
-                return "Cannot move item to this position: \(position)"
-            case .removeError:
-                return "Cannot remove item from list"
-            }
+    struct DuplicateEntryListError: Error & Exception {
+        var message: String {
+            "Cannot add item to list, a similar variant of it already exists in this list"
         }
     }
 
+    struct MoveItemListError: Error & Exception {
+        private let position: Int
+
+        var message: String {
+            "Cannot move item to this position: \(position)"
+        }
+
+        init(position: Int) {
+            self.position = position
+        }
+    }
+
+    struct RemoveItemListError: Error & Exception {
+        var message: String {
+            "Cannot remove item from list"
+        }
+    }
+    
 }
