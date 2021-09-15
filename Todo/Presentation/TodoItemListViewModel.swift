@@ -45,7 +45,7 @@ final class TodoItemListViewModel: ObservableObject {
                 }
                 self?.onFetchComplete = true
             case .failure(let error):
-                self?.onError = error
+                self?.publish(error: error)
             }
         }
     }
@@ -62,10 +62,10 @@ final class TodoItemListViewModel: ObservableObject {
                     try self?.list.add(item: todoItem)
                     self?.onAddComplete = true
                 } catch let error {
-                    self?.onError = error
+                    self?.publish(error: error)
                 }
             case .failure(let error):
-                self?.onError = error
+                self?.publish(error: error)
             }
         }
     }
@@ -78,12 +78,16 @@ final class TodoItemListViewModel: ObservableObject {
                     try self?.list.remove(item: item)
                     self?.onRemoveComplete = true
                 } catch let error {
-                    self?.onError = error
+                    self?.publish(error: error)
                 }
             case .failure(let error):
-                self?.onError = error
+                self?.publish(error: error)
             }
         }
+    }
+
+    private func publish(error: Error){
+        self.onError = error
     }
 
 }
