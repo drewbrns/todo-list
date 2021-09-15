@@ -25,28 +25,47 @@ class TodoViewController: UIViewController {
         super.viewDidLoad()
 
         setupTableView()
-        bindVm()
+        bindVmPublishers()
 
         title = vm.name
+
         vm.fetchTodos()
     }
 
+}
+
+// MARK: Setup
+extension TodoViewController {
+
     private func setupTableView() {
+        registerCell()
+        removeEmptyCellsFromBottom()
+    }
+
+    private func registerCell() {
         self.tableView.register(
             UINib(nibName: TodoItemCell.cellId, bundle: nil),
             forCellReuseIdentifier: TodoItemCell.cellId
         )
+    }
+
+    private func removeEmptyCellsFromBottom() {
         self.tableView.tableFooterView = UIView()
     }
 
-    private func bindVm() {
-        vm.$onFetchComplete.sink { _ in
-            self.tableView.reloadData()
+    private func bindVmPublishers() {
+        bindFetchCompletePublisher()
+    }
+
+    private func bindFetchCompletePublisher() {
+        vm.$onFetchComplete.sink { [weak self] _ in
+            self?.tableView.reloadData()
         }.store(in: &cancellables)
     }
 
 }
 
+// MARK: TableView Datasource
 extension TodoViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,11 +84,9 @@ extension TodoViewController: UITableViewDataSource {
         ) as? TodoItemCell else {
             fatalError("Expected TodoItemCell")
         }
-        if let item = vm.item(at: indexPath.row) {
-            cell.configure(with: TodoItemViewModel(
-                todoItem: item
-            ))
-        }
+
+        cell.configure(with: vm.item(at: indexPath.row))
+
         return cell
     }
 

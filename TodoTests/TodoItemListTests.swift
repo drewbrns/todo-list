@@ -44,7 +44,7 @@ class TodoItemListTests: XCTestCase {
             thrownError = error
         }
 
-        XCTAssertTrue(thrownError is TodoItemList.ListError)
+        XCTAssertTrue(thrownError is TodoItemList.DuplicateEntryListError)
     }
 
     func test_itemForRow() {
@@ -91,7 +91,7 @@ class TodoItemListTests: XCTestCase {
             thrownError = error
         }
 
-        XCTAssertTrue(thrownError is TodoItemList.ListError)
+        XCTAssertTrue(thrownError is TodoItemList.MoveItemListError)
     }
 
     func test_removeItem_throws_error_when_item_is_not_in_list() {
@@ -102,7 +102,7 @@ class TodoItemListTests: XCTestCase {
             thrownError = error
         }
 
-        XCTAssertTrue(thrownError is TodoItemList.ListError)
+        XCTAssertTrue(thrownError is TodoItemList.RemoveItemListError)
     }
 
     func test_removeItem_from_list() throws {

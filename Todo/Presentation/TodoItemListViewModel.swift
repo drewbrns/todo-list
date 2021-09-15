@@ -31,21 +31,20 @@ final class TodoItemListViewModel: ObservableObject {
         return list.count
     }
     
-    func item(at index: Int) -> TodoItem? {
+    func item(at index: Int) -> TodoItemViewModel? {
         guard index >= 0 && index <= list.count else { return nil }
-        return list.item(at: index)
+        let todoItem = list.item(at: index)
+        return TodoItemViewModel(todoItem: todoItem)
     }
 
     func fetchTodos() {
         self.repository.load { [weak self] result in
             switch result {
             case .success(let objects):
-                objects.forEach {
-                    try? self?.list.add(item: $0)
-                }
+                self?.add(items: objects)
                 self?.onFetchComplete = true
             case .failure(let error):
-                self?.onError = error
+                self?.publish(error: error)
             }
         }
     }
@@ -58,14 +57,10 @@ final class TodoItemListViewModel: ObservableObject {
         ) { [weak self] result in
             switch result {
             case .success(let todoItem):
-                do {
-                    try self?.list.add(item: todoItem)
-                    self?.onAddComplete = true
-                } catch let error {
-                    self?.onError = error
-                }
+                self?.add(items: [todoItem])
+                self?.onAddComplete = true
             case .failure(let error):
-                self?.onError = error
+                self?.publish(error: error)
             }
         }
     }
@@ -74,16 +69,34 @@ final class TodoItemListViewModel: ObservableObject {
         self.repository.remove(id: itemId) { [weak self] result in
             switch result {
             case .success(let item):
-                do {
-                    try self?.list.remove(item: item)
-                    self?.onRemoveComplete = true
-                } catch let error {
-                    self?.onError = error
-                }
+                self?.remove(item: item)
+                self?.onRemoveComplete = true
             case .failure(let error):
-                self?.onError = error
+                self?.publish(error: error)
             }
         }
+    }
+
+    private func add(items: [TodoItem]) {
+        items.forEach {
+            do {
+                try self.list.add(item: $0)
+            } catch let error {
+                self.publish(error: error)
+            }
+        }
+    }
+
+    private func remove(item: TodoItem) {
+        do {
+            try self.list.remove(item: item)
+        } catch let error {
+            self.publish(error: error)
+        }
+    }
+    
+    private func publish(error: Error){
+        self.onError = error
     }
 
 }
