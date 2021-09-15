@@ -23,5 +23,8 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_12.app
 
+    - name: List all destinations
+      run: xcodebuild -project Todo.xcodeproj -scheme CI -showdestinations
+
     - name: Build and test
       run: xcodebuild clean build test -project Todo.xcodeproj -scheme "CI" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
