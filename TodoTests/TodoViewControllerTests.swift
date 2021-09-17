@@ -72,7 +72,7 @@ class TodoViewControllerTests: XCTestCase {
     }
 
     // MARK: Helpers
-    
+
     func makeSut(items: [TodoItem] = []) -> (vc: TodoViewController, repo: TodoItemRepositoryStub) {
 
         let list = TodoItemList(name: "Default List")
@@ -83,7 +83,7 @@ class TodoViewControllerTests: XCTestCase {
             list: list,
             repository: repository
         )
-        
+
         let sut = TodoViewController(viewModel: viewModel)
         sut.loadViewIfNeeded()
         return (sut, repository)
@@ -130,5 +130,5 @@ private extension UITableView {
     func isComplete(at row: Int) -> UIColor? {
         return cell(at: row)?.checkMarkInnerView.backgroundColor
     }
-    
+
 }

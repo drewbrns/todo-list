@@ -10,7 +10,7 @@ import XCTest
 @testable import Todo
 
 class TodoItemListTests: XCTestCase {
-    
+
     let todos = [
         TodoItem(label: "Todo1"),
         TodoItem(label: "Todo2"),
@@ -21,7 +21,7 @@ class TodoItemListTests: XCTestCase {
     func test_initialState_of_list() {
         let sut = makeSut()
 
-        XCTAssertEqual(sut.name,  "Default List")
+        XCTAssertEqual(sut.name, "Default List")
         XCTAssertEqual(sut.count, 0)
         XCTAssertTrue(sut.isEmpty)
     }
@@ -56,7 +56,7 @@ class TodoItemListTests: XCTestCase {
     func test_moveItem_to_index_0() throws {
         let sut = makeSut(items: [todos[0], todos[1]])
 
-        try sut.move(item: todos[1] , to: 0)
+        try sut.move(item: todos[1], to: 0)
 
         XCTAssertEqual(sut.item(at: 0), todos[1])
         XCTAssertEqual(sut.item(at: 1), todos[0])
@@ -64,7 +64,7 @@ class TodoItemListTests: XCTestCase {
 
     func test_moveItem_to_position_TodoItem_infront_of_other_items() throws {
         let sut = makeSut(items: todos)
-        try sut.move(item: todos[3] , to: 1)
+        try sut.move(item: todos[3], to: 1)
 
         XCTAssertEqual(sut.item(at: 0), todos[0])
         XCTAssertEqual(sut.item(at: 1), todos[3])
@@ -74,7 +74,7 @@ class TodoItemListTests: XCTestCase {
 
     func test_moveItem_to_position_TodoItem_behind_other_items() throws {
         let sut = makeSut(items: todos)
-        try sut.move(item: todos[0] , to: 3)
+        try sut.move(item: todos[0], to: 3)
 
         XCTAssertEqual(sut.item(at: 0), todos[1])
         XCTAssertEqual(sut.item(at: 1), todos[2])
@@ -111,9 +111,9 @@ class TodoItemListTests: XCTestCase {
         try sut.remove(item: todos[0])
         XCTAssertTrue(sut.isEmpty)
     }
-    
+
     // MARK: Helpers
-    
+
     func makeSut(items: [TodoItem] = []) -> TodoItemList {
         let sut = TodoItemList(name: "Default List", items: items)
         return sut

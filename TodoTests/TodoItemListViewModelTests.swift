@@ -23,7 +23,7 @@ class TodoItemListViewModelTests: XCTestCase {
 
         XCTAssertEqual(sut.name, "default list")
     }
-    
+
     func test_viewItemAtIndex_returns_item() {
         let sut = makeSUT(items: todos)
         sut.fetchTodos()
@@ -78,7 +78,12 @@ class TodoItemListViewModelTests: XCTestCase {
             completion(.success(todos))
         }
 
-        func add(label: String, dueDate: Date, notes: String?, completion: @escaping (Result<TodoItem, Error>) -> Void) {
+        func add(
+            label: String,
+            dueDate: Date,
+            notes: String?,
+            completion: @escaping (Result<TodoItem, Error>) -> Void
+        ) {
             let item = TodoItem(
                 label: label,
                 dueDate: dueDate,

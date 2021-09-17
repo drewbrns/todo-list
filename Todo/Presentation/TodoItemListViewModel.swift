@@ -30,7 +30,7 @@ final class TodoItemListViewModel: ObservableObject {
     var count: Int {
         return list.count
     }
-    
+
     func item(at index: Int) -> TodoItemViewModel? {
         guard index >= 0 && index <= list.count else { return nil }
         let todoItem = list.item(at: index)
@@ -94,8 +94,8 @@ final class TodoItemListViewModel: ObservableObject {
             self.publish(error: error)
         }
     }
-    
-    private func publish(error: Error){
+
+    private func publish(error: Error) {
         self.onError = error
     }
 
