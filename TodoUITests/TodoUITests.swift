@@ -5,6 +5,7 @@
 //  Created by Drew Barnes on 31/08/2021.
 //
 
+// swiftlint:disable line_length
 import XCTest
 
 class TodoUITests: XCTestCase {

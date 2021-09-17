@@ -16,7 +16,7 @@ class TodoItemTests: XCTestCase {
         let sut = TodoItem(label: "a good task", dueDate: currentDate)
         XCTAssertTrue(sut.isDue)
     }
-    
+
     func test_TodoItem_is_not_due() {
         let sut = TodoItem(label: "a good task", dueDate: .distantFuture)
         XCTAssertFalse(sut.isDue)

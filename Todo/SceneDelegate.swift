@@ -5,12 +5,13 @@
 //  Created by Drew Barnes on 31/08/2021.
 //
 
+// swiftlint:disable line_length
+
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -56,6 +57,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
-
 }
-
