@@ -16,7 +16,7 @@ class AddTodoViewController: UIViewController {
     @IBOutlet var submitButton: UIButton!
 
     private var header: String?
-    private (set) var vm: AddTodoItemViewModel!
+    private(set) var vm: AddTodoItemViewModel!
     private var cancellables: Set<AnyCancellable> = []
 
     convenience init(title: String, viewModel: AddTodoItemViewModel) {
@@ -35,6 +35,11 @@ class AddTodoViewController: UIViewController {
     }
 
     @IBAction func submitButtonTapped(_ sender: UIButton) {
+        vm.addTodo(
+            label: todoItemLabelTextField.text,
+            dueDate: todoItemDueDatePicker.date,
+            notes: todoItemNotesTextView.text
+        )
     }
 
     private func setupDatePicker() {

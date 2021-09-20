@@ -23,6 +23,18 @@ class AddTodoViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.title, "Add Todo")
     }
 
+    func test_submitButtonTapped_addsATodo() {
+        let sut = makeSut()
+        let dueDate = getDueDate(travelBy: 60 * 60)
+
+        sut.todoItemLabelTextField.text = "#todo 1"
+        sut.todoItemDueDatePicker.setDate(dueDate, animated: false)
+        sut.todoItemNotesTextView.text = "a good note"
+        tap(sut.submitButton)
+
+        XCTAssertNotNil(sut.vm.onAddItem)
+    }
+
     // MARK: Helpers
 
     func makeSut(title: String = "") -> AddTodoViewController {
@@ -49,4 +61,13 @@ class AddTodoViewControllerTests: XCTestCase {
         }
     }
 
+    func tap(_ button: UIButton) {
+        button.sendActions(for: .touchUpInside)
+    }
+
+    func getDueDate(travelBy timeInterval: TimeInterval) -> Date {
+        let timeTraveller = TimeTraveler()
+        timeTraveller.travel(by: timeInterval)
+        return timeTraveller.generateDate()
+    }
 }
