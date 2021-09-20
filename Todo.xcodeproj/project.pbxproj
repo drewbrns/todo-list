@@ -21,7 +21,6 @@
 		3A406F1B26F635BA00040D72 /* AddTodoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */; };
 		3A406F1D26F7820D00040D72 /* AddTodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1C26F7820D00040D72 /* AddTodoViewModel.swift */; };
 		3A406F1F26F7822D00040D72 /* AddTodoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1E26F7822D00040D72 /* AddTodoViewModelTests.swift */; };
-		3A406F2126F795C400040D72 /* Test+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2026F795C400040D72 /* Test+Helpers.swift */; };
 		3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16526DDAB26008B8673 /* AppDelegate.swift */; };
 		3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */; };
 		3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16E26DDAB27008B8673 /* Todo.xcdatamodeld */; };
@@ -68,7 +67,6 @@
 		3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewControllerTests.swift; sourceTree = "<group>"; };
 		3A406F1C26F7820D00040D72 /* AddTodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewModel.swift; sourceTree = "<group>"; };
 		3A406F1E26F7822D00040D72 /* AddTodoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewModelTests.swift; sourceTree = "<group>"; };
-		3A406F2026F795C400040D72 /* Test+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test+Helpers.swift"; sourceTree = "<group>"; };
 		3ADAF16226DDAB26008B8673 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADAF16526DDAB26008B8673 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 				3A32766326EF657800B092FB /* TodoViewControllerTests.swift */,
 				3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */,
 				3A406F1E26F7822D00040D72 /* AddTodoViewModelTests.swift */,
-				3A406F2026F795C400040D72 /* Test+Helpers.swift */,
 			);
 			path = TodoTests;
 			sourceTree = "<group>";
@@ -425,7 +422,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A406F2126F795C400040D72 /* Test+Helpers.swift in Sources */,
 				3A32766426EF657800B092FB /* TodoViewControllerTests.swift in Sources */,
 				3A406F1B26F635BA00040D72 /* AddTodoViewControllerTests.swift in Sources */,
 				3ADAF19E26DE9037008B8673 /* TodoItemTests.swift in Sources */,
