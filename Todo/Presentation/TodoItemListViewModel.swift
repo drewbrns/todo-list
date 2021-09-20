@@ -11,10 +11,9 @@ import Combine
 final class TodoItemListViewModel: ObservableObject {
 
     private var list: ItemList
-    private var repository: TodoItemRepository
+    private var repository: TodoItemReadUpdateDestroyRepository
 
     @Published private(set) var onFetchComplete: Bool = false
-    @Published private(set) var onAddComplete: Bool = false
     @Published private(set) var onRemoveComplete: Bool = false
     @Published private(set) var onError: Error?
 
@@ -22,7 +21,7 @@ final class TodoItemListViewModel: ObservableObject {
         return self.list.name
     }
 
-    init(list: ItemList, repository: TodoItemRepository) {
+    init(list: ItemList, repository: TodoItemReadUpdateDestroyRepository) {
         self.list = list
         self.repository = repository
     }
@@ -43,22 +42,6 @@ final class TodoItemListViewModel: ObservableObject {
             case .success(let objects):
                 self?.add(items: objects)
                 self?.onFetchComplete = true
-            case .failure(let error):
-                self?.publish(error: error)
-            }
-        }
-    }
-
-    func addTodo(label: String, dueDate: Date, notes: String?) {
-        self.repository.add(
-            label: label,
-            dueDate: dueDate,
-            notes: notes
-        ) { [weak self] result in
-            switch result {
-            case .success(let todoItem):
-                self?.add(items: [todoItem])
-                self?.onAddComplete = true
             case .failure(let error):
                 self?.publish(error: error)
             }

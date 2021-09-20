@@ -46,16 +46,6 @@ class TodoItemListViewModelTests: XCTestCase {
         XCTAssertEqual(sut.count, todos.count)
     }
 
-    func test_addTodo_stores_item_in_repository_and_updates_list() {
-        let sut = makeSUT()
-
-        sut.addTodo(label: "A todo", dueDate: Date(), notes: "nicely done")
-        XCTAssertEqual(sut.count, 1)
-
-        sut.addTodo(label: "A todo", dueDate: Date(), notes: "nicely done")
-        XCTAssertEqual(sut.count, 2)
-    }
-
     func test_deleteTodo_removes_item_from_repository_and_updates_list() {
         let item = todos[0]
         let sut = makeSUT(items: [item])
@@ -70,7 +60,15 @@ class TodoItemListViewModelTests: XCTestCase {
 
     // MARK: Helpers
 
-    final class TodoItemRepositoryStub: TodoItemRepository {
+    func makeSUT(items: [TodoItem] = []) -> TodoItemListViewModel {
+        let list = TodoItemList(name: "default list")
+        let repository = TodoItemRepositoryStub()
+        repository.todos = items
+
+        return TodoItemListViewModel(list: list, repository: repository)
+    }
+
+    final class TodoItemRepositoryStub: TodoItemReadUpdateDestroyRepository {
 
         var todos = [TodoItem]()
 
@@ -78,19 +76,7 @@ class TodoItemListViewModelTests: XCTestCase {
             completion(.success(todos))
         }
 
-        func add(
-            label: String,
-            dueDate: Date,
-            notes: String?,
-            completion: @escaping (Result<TodoItem, Error>) -> Void
-        ) {
-            let item = TodoItem(
-                label: label,
-                dueDate: dueDate,
-                notes: notes
-            )
-
-            completion(.success(item))
+        func update(id: TodoItem.ID, data: TodoItem) {
         }
 
         func remove(id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void) {
@@ -103,15 +89,5 @@ class TodoItemListViewModelTests: XCTestCase {
                 completion(.failure(error))
             }
         }
-
     }
-
-    func makeSUT(items: [TodoItem] = []) -> TodoItemListViewModel {
-        let list = TodoItemList(name: "default list")
-        let repository = TodoItemRepositoryStub()
-        repository.todos = items
-
-        return TodoItemListViewModel(list: list, repository: repository)
-    }
-
 }

@@ -89,16 +89,15 @@ class TodoViewControllerTests: XCTestCase {
         return (sut, repository)
     }
 
-    final class TodoItemRepositoryStub: TodoItemRepository {
+    final class TodoItemRepositoryStub: TodoItemReadUpdateDestroyRepository {
+
         var items = [TodoItem]()
 
         func load(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
             completion(.success(items))
         }
 
-        func add(
-            label: String, dueDate: Date, notes: String?,
-            completion: @escaping (Result<TodoItem, Error>) -> Void) {
+        func update(id: TodoItem.ID, data: TodoItem) {
         }
 
         func remove(
