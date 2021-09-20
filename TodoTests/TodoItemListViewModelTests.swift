@@ -46,15 +46,15 @@ class TodoItemListViewModelTests: XCTestCase {
         XCTAssertEqual(sut.count, todos.count)
     }
 
-    func test_addTodo_stores_item_in_repository_and_updates_list() {
-        let sut = makeSUT()
-
-        sut.addTodo(label: "A todo", dueDate: Date(), notes: "nicely done")
-        XCTAssertEqual(sut.count, 1)
-
-        sut.addTodo(label: "A todo", dueDate: Date(), notes: "nicely done")
-        XCTAssertEqual(sut.count, 2)
-    }
+//    func test_addTodo_stores_item_in_repository_and_updates_list() {
+//        let sut = makeSUT()
+//
+//        sut.addTodo(label: "A todo", dueDate: Date(), notes: "nicely done")
+//        XCTAssertEqual(sut.count, 1)
+//
+//        sut.addTodo(label: "A todo", dueDate: Date(), notes: "nicely done")
+//        XCTAssertEqual(sut.count, 2)
+//    }
 
     func test_deleteTodo_removes_item_from_repository_and_updates_list() {
         let item = todos[0]
@@ -69,42 +69,6 @@ class TodoItemListViewModelTests: XCTestCase {
     }
 
     // MARK: Helpers
-
-    final class TodoItemRepositoryStub: TodoItemRepository {
-
-        var todos = [TodoItem]()
-
-        func load(completion: @escaping (Result<[TodoItem], Error>) -> Void) {
-            completion(.success(todos))
-        }
-
-        func add(
-            label: String,
-            dueDate: Date,
-            notes: String?,
-            completion: @escaping (Result<TodoItem, Error>) -> Void
-        ) {
-            let item = TodoItem(
-                label: label,
-                dueDate: dueDate,
-                notes: notes
-            )
-
-            completion(.success(item))
-        }
-
-        func remove(id: TodoItem.ID, completion: @escaping (Result<TodoItem, Error>) -> Void) {
-            if let found = todos.firstIndex(where: { $0.id == id }) {
-                let item = todos[found]
-                todos.remove(at: found)
-                completion(.success(item))
-            } else {
-                let error = RepositoryError.recordNotFound
-                completion(.failure(error))
-            }
-        }
-
-    }
 
     func makeSUT(items: [TodoItem] = []) -> TodoItemListViewModel {
         let list = TodoItemList(name: "default list")
