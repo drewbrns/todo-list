@@ -19,8 +19,8 @@
 		3A32766B26EF8E7600B092FB /* TodoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A32766926EF8E7600B092FB /* TodoItemCell.swift */; };
 		3A32766C26EF8E7600B092FB /* TodoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A32766A26EF8E7600B092FB /* TodoItemCell.xib */; };
 		3A406F1B26F635BA00040D72 /* AddTodoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */; };
-		3A406F1D26F7820D00040D72 /* AddTodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1C26F7820D00040D72 /* AddTodoViewModel.swift */; };
-		3A406F1F26F7822D00040D72 /* AddTodoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1E26F7822D00040D72 /* AddTodoViewModelTests.swift */; };
+		3A406F1D26F7820D00040D72 /* AddTodoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1C26F7820D00040D72 /* AddTodoItemViewModel.swift */; };
+		3A406F1F26F7822D00040D72 /* AddTodoItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1E26F7822D00040D72 /* AddTodoItemViewModelTests.swift */; };
 		3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16526DDAB26008B8673 /* AppDelegate.swift */; };
 		3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */; };
 		3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16E26DDAB27008B8673 /* Todo.xcdatamodeld */; };
@@ -65,8 +65,8 @@
 		3A32766926EF8E7600B092FB /* TodoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemCell.swift; sourceTree = "<group>"; };
 		3A32766A26EF8E7600B092FB /* TodoItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoItemCell.xib; sourceTree = "<group>"; };
 		3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewControllerTests.swift; sourceTree = "<group>"; };
-		3A406F1C26F7820D00040D72 /* AddTodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewModel.swift; sourceTree = "<group>"; };
-		3A406F1E26F7822D00040D72 /* AddTodoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewModelTests.swift; sourceTree = "<group>"; };
+		3A406F1C26F7820D00040D72 /* AddTodoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewModel.swift; sourceTree = "<group>"; };
+		3A406F1E26F7822D00040D72 /* AddTodoItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewModelTests.swift; sourceTree = "<group>"; };
 		3ADAF16226DDAB26008B8673 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADAF16526DDAB26008B8673 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 				3A0AE63426F024BC0011851C /* Helpers */,
 				3ADAF1A126DF0C03008B8673 /* TodoItemListViewModel.swift */,
 				3A0AE63226F019740011851C /* TodoItemViewModel.swift */,
-				3A406F1C26F7820D00040D72 /* AddTodoViewModel.swift */,
+				3A406F1C26F7820D00040D72 /* AddTodoItemViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -232,7 +232,7 @@
 				3ADAF1A326DF8B79008B8673 /* TodoItemListViewModelTests.swift */,
 				3A32766326EF657800B092FB /* TodoViewControllerTests.swift */,
 				3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */,
-				3A406F1E26F7822D00040D72 /* AddTodoViewModelTests.swift */,
+				3A406F1E26F7822D00040D72 /* AddTodoItemViewModelTests.swift */,
 			);
 			path = TodoTests;
 			sourceTree = "<group>";
@@ -411,7 +411,7 @@
 				3A0AE63326F019740011851C /* TodoItemViewModel.swift in Sources */,
 				3A0AE63C26F17AB00011851C /* Exception.swift in Sources */,
 				3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */,
-				3A406F1D26F7820D00040D72 /* AddTodoViewModel.swift in Sources */,
+				3A406F1D26F7820D00040D72 /* AddTodoItemViewModel.swift in Sources */,
 				3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */,
 				3ADAF1A226DF0C03008B8673 /* TodoItemListViewModel.swift in Sources */,
 				3A0AE63126F010820011851C /* Date+Additions.swift in Sources */,
@@ -426,7 +426,7 @@
 				3A406F1B26F635BA00040D72 /* AddTodoViewControllerTests.swift in Sources */,
 				3ADAF19E26DE9037008B8673 /* TodoItemTests.swift in Sources */,
 				3ADAF1A426DF8B79008B8673 /* TodoItemListViewModelTests.swift in Sources */,
-				3A406F1F26F7822D00040D72 /* AddTodoViewModelTests.swift in Sources */,
+				3A406F1F26F7822D00040D72 /* AddTodoItemViewModelTests.swift in Sources */,
 				3ADAF19A26DE60F1008B8673 /* TodoItemListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
