@@ -14,7 +14,7 @@ class AddTodoItemViewModelTests: XCTestCase {
         let sut = makeSut().sut
 
         XCTAssertNil(sut.onAddItem)
-        sut.addItem(label: "todo #1", dueDate: Date(), notes: "a good note")
+        sut.addTodo(label: "todo #1", dueDate: Date(), notes: "a good note")
 
         XCTAssertNotNil(sut.onAddItem)
     }
