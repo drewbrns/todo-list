@@ -17,7 +17,7 @@ final class AddTodoItemViewModel {
         self.repository = repository
     }
 
-    func addTodo(label: String, dueDate: Date = .distantFuture, notes: String? = nil) {
+    func addTodo(label: String, dueDate: Date, notes: String? = nil) {
         repository.add(label: label, dueDate: dueDate, notes: notes) { [weak self] result in
             switch result {
             case .success(let item):
