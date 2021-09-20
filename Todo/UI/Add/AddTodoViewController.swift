@@ -9,8 +9,8 @@ import UIKit
 
 class AddTodoViewController: UIViewController {
 
-    @IBOutlet var todoItemLabelTextField: UITextField!
-    @IBOutlet var todoItemNotesTextView: UITextView!
+    @IBOutlet var todoItemLabelTextField: PaddedTextField!
+    @IBOutlet var todoItemNotesTextView: PaddedTextView!
     @IBOutlet var todoItemDueDatePicker: UIDatePicker!
     @IBOutlet var submitButton: UIButton!
 

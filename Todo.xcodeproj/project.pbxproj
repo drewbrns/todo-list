@@ -21,6 +21,9 @@
 		3A406F1B26F635BA00040D72 /* AddTodoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */; };
 		3A406F1D26F7820D00040D72 /* AddTodoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1C26F7820D00040D72 /* AddTodoItemViewModel.swift */; };
 		3A406F1F26F7822D00040D72 /* AddTodoItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F1E26F7822D00040D72 /* AddTodoItemViewModelTests.swift */; };
+		3A406F2426F8294C00040D72 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2326F8294C00040D72 /* UIView+Additions.swift */; };
+		3A406F2626F8296900040D72 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2526F8296900040D72 /* PaddedTextField.swift */; };
+		3A406F2826F8297500040D72 /* PaddedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2726F8297500040D72 /* PaddedTextView.swift */; };
 		3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16526DDAB26008B8673 /* AppDelegate.swift */; };
 		3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */; };
 		3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16E26DDAB27008B8673 /* Todo.xcdatamodeld */; };
@@ -67,6 +70,9 @@
 		3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewControllerTests.swift; sourceTree = "<group>"; };
 		3A406F1C26F7820D00040D72 /* AddTodoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewModel.swift; sourceTree = "<group>"; };
 		3A406F1E26F7822D00040D72 /* AddTodoItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewModelTests.swift; sourceTree = "<group>"; };
+		3A406F2326F8294C00040D72 /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		3A406F2526F8296900040D72 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
+		3A406F2726F8297500040D72 /* PaddedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextView.swift; sourceTree = "<group>"; };
 		3ADAF16226DDAB26008B8673 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADAF16526DDAB26008B8673 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 		3A32766D26EFA23900B092FB /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3A406F2226F8293F00040D72 /* Helpers */,
 				3A0AE63926F027ED0011851C /* List */,
 				3A0AE63A26F027FA0011851C /* Add */,
 			);
@@ -184,6 +191,16 @@
 				3ADAF19F26DE9BAC008B8673 /* TodoItem.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		3A406F2226F8293F00040D72 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A406F2326F8294C00040D72 /* UIView+Additions.swift */,
+				3A406F2526F8296900040D72 /* PaddedTextField.swift */,
+				3A406F2726F8297500040D72 /* PaddedTextView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3ADAF15926DDAB26008B8673 = {
@@ -401,16 +418,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A406F2426F8294C00040D72 /* UIView+Additions.swift in Sources */,
 				3A32766726EF669500B092FB /* TodoViewController.swift in Sources */,
 				3ADAF1A026DE9BAD008B8673 /* TodoItem.swift in Sources */,
 				3ADAF19C26DE6D3A008B8673 /* TodoItemList.swift in Sources */,
 				3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */,
 				3A0AE63726F0278D0011851C /* AddTodoViewController.swift in Sources */,
 				3A32766B26EF8E7600B092FB /* TodoItemCell.swift in Sources */,
+				3A406F2826F8297500040D72 /* PaddedTextView.swift in Sources */,
 				3A32766026EF59F500B092FB /* TodoItemRepository.swift in Sources */,
 				3A0AE63326F019740011851C /* TodoItemViewModel.swift in Sources */,
 				3A0AE63C26F17AB00011851C /* Exception.swift in Sources */,
 				3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */,
+				3A406F2626F8296900040D72 /* PaddedTextField.swift in Sources */,
 				3A406F1D26F7820D00040D72 /* AddTodoItemViewModel.swift in Sources */,
 				3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */,
 				3ADAF1A226DF0C03008B8673 /* TodoItemListViewModel.swift in Sources */,
