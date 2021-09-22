@@ -7,22 +7,22 @@
 
 import Foundation
 
-struct TodoItemViewModel {
-    private(set) var todoItem: TodoItem
+struct TodoItemViewModel: Equatable {
+    private(set) var todoItem: TodoItem?
 
     var label: String {
-        todoItem.label
+        todoItem?.label ?? ""
     }
 
     var notes: String? {
-        todoItem.notes
+        todoItem?.notes ?? ""
     }
 
     var dueDate: String? {
-        todoItem.dueDate.stringForDisplay(longFormat: "EEEE, MMM d, yyyy")
+        todoItem?.dueDate.stringForDisplay(longFormat: "EEEE, MMM d, yyyy") ?? ""
     }
 
     var isComplete: Bool {
-        todoItem.isComplete
+        todoItem?.isComplete ?? false
     }
 }

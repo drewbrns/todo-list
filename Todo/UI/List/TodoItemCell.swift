@@ -35,37 +35,14 @@ class TodoItemCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configure(with vm: TodoItemViewModel?) {
-        if let vm = vm {
-            renderState(with: vm)
-        } else {
-            renderEmptyState()
-        }
-    }
-
-    @IBAction func completeTaskButtonTapped(_ sender: Any) {
-    }
-
-    private func renderState(with vm: TodoItemViewModel) {
+    func configure(with vm: TodoItemViewModel) {
         self.titleLabel.text = vm.label
         self.subTitleLabel.text = vm.notes
         self.dateLabel.text = vm.dueDate
-        renderCheckmarkView(isComplete: vm.isComplete)
+        self.checkMarkInnerView.backgroundColor = vm.isComplete ? activeColor : .white
     }
 
-    private func renderEmptyState() {
-        self.titleLabel.text = ""
-        self.subTitleLabel.text = ""
-        self.dateLabel.text = ""
-        renderCheckmarkView(isComplete: false)
-    }
-
-    private func renderCheckmarkView(isComplete: Bool) {
-        if isComplete {
-            self.checkMarkInnerView.backgroundColor = activeColor
-        } else {
-            self.checkMarkView.backgroundColor = .white
-        }
+    @IBAction func completeTaskButtonTapped(_ sender: Any) {
     }
 
     private func layoutCheckMarkViewAsRounded() {

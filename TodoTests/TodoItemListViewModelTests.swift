@@ -28,15 +28,15 @@ class TodoItemListViewModelTests: XCTestCase {
         let sut = makeSUT(items: todos)
         sut.fetchTodos()
 
-        XCTAssertEqual(sut.item(at: 0)?.todoItem, todos[0])
+        XCTAssertEqual(sut.item(at: 0).todoItem, todos[0])
     }
 
     func test_viewItem_with_invalidIndex_returns_nil() {
         let sut = makeSUT()
         sut.fetchTodos()
 
-        XCTAssertNil(sut.item(at: -1))
-        XCTAssertNil(sut.item(at: 5))
+        XCTAssertEqual(sut.item(at: -1), TodoItemViewModel())
+        XCTAssertEqual(sut.item(at: 5), TodoItemViewModel())
     }
 
     func test_count() {
