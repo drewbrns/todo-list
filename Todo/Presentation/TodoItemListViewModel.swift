@@ -30,8 +30,8 @@ final class TodoItemListViewModel: ObservableObject {
         return list.count
     }
 
-    func item(at index: Int) -> TodoItemViewModel? {
-        guard index >= 0 && index <= list.count else { return nil }
+    func item(at index: Int) -> TodoItemViewModel {
+        guard index >= 0 && index <= list.count else { return TodoItemViewModel() }
         let todoItem = list.item(at: index)
         return TodoItemViewModel(todoItem: todoItem)
     }
