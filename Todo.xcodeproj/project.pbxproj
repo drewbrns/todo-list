@@ -25,6 +25,9 @@
 		3A406F2626F8296900040D72 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2526F8296900040D72 /* PaddedTextField.swift */; };
 		3A406F2826F8297500040D72 /* PaddedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2726F8297500040D72 /* PaddedTextView.swift */; };
 		3A406F2A26F8B2B500040D72 /* Test+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2926F8B2B400040D72 /* Test+Helpers.swift */; };
+		3A7754442703F73200C79ADA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7754432703F73200C79ADA /* Coordinator.swift */; };
+		3A7754462703F74F00C79ADA /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7754452703F74F00C79ADA /* MainCoordinatorTests.swift */; };
+		3A7754482703F84C00C79ADA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7754472703F84C00C79ADA /* MainCoordinator.swift */; };
 		3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16526DDAB26008B8673 /* AppDelegate.swift */; };
 		3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */; };
 		3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16E26DDAB27008B8673 /* Todo.xcdatamodeld */; };
@@ -75,6 +78,9 @@
 		3A406F2526F8296900040D72 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		3A406F2726F8297500040D72 /* PaddedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextView.swift; sourceTree = "<group>"; };
 		3A406F2926F8B2B400040D72 /* Test+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test+Helpers.swift"; sourceTree = "<group>"; };
+		3A7754432703F73200C79ADA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3A7754452703F74F00C79ADA /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
+		3A7754472703F84C00C79ADA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		3ADAF16226DDAB26008B8673 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADAF16526DDAB26008B8673 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +211,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		3A7754422703F71500C79ADA /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				3A7754432703F73200C79ADA /* Coordinator.swift */,
+				3A7754472703F84C00C79ADA /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		3ADAF15926DDAB26008B8673 = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +248,7 @@
 				3ADAF17126DDAB2C008B8673 /* Assets.xcassets */,
 				3ADAF17326DDAB2C008B8673 /* LaunchScreen.storyboard */,
 				3ADAF17626DDAB2C008B8673 /* Info.plist */,
+				3A7754422703F71500C79ADA /* Coordinators */,
 				3A0AE63D26F17ABC0011851C /* Helpers */,
 				3A32767026EFA35C00B092FB /* Domain */,
 				3A32766E26EFA24600B092FB /* Repository */,
@@ -253,6 +269,7 @@
 				3A32766326EF657800B092FB /* TodoViewControllerTests.swift */,
 				3A406F1A26F635BA00040D72 /* AddTodoViewControllerTests.swift */,
 				3A406F1E26F7822D00040D72 /* AddTodoItemViewModelTests.swift */,
+				3A7754452703F74F00C79ADA /* MainCoordinatorTests.swift */,
 			);
 			path = TodoTests;
 			sourceTree = "<group>";
@@ -429,11 +446,13 @@
 				3A0AE63726F0278D0011851C /* AddTodoViewController.swift in Sources */,
 				3A32766B26EF8E7600B092FB /* TodoItemCell.swift in Sources */,
 				3A406F2826F8297500040D72 /* PaddedTextView.swift in Sources */,
+				3A7754442703F73200C79ADA /* Coordinator.swift in Sources */,
 				3A32766026EF59F500B092FB /* TodoItemRepository.swift in Sources */,
 				3A0AE63326F019740011851C /* TodoItemViewModel.swift in Sources */,
 				3A0AE63C26F17AB00011851C /* Exception.swift in Sources */,
 				3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */,
 				3A406F2626F8296900040D72 /* PaddedTextField.swift in Sources */,
+				3A7754482703F84C00C79ADA /* MainCoordinator.swift in Sources */,
 				3A406F1D26F7820D00040D72 /* AddTodoItemViewModel.swift in Sources */,
 				3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */,
 				3ADAF1A226DF0C03008B8673 /* TodoItemListViewModel.swift in Sources */,
@@ -446,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A406F2A26F8B2B500040D72 /* Test+Helpers.swift in Sources */,
+				3A7754462703F74F00C79ADA /* MainCoordinatorTests.swift in Sources */,
 				3A32766426EF657800B092FB /* TodoViewControllerTests.swift in Sources */,
 				3A406F1B26F635BA00040D72 /* AddTodoViewControllerTests.swift in Sources */,
 				3ADAF19E26DE9037008B8673 /* TodoItemTests.swift in Sources */,
