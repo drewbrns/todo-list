@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,7 @@
 		3A406F2626F8296900040D72 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2526F8296900040D72 /* PaddedTextField.swift */; };
 		3A406F2826F8297500040D72 /* PaddedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2726F8297500040D72 /* PaddedTextView.swift */; };
 		3A406F2A26F8B2B500040D72 /* Test+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A406F2926F8B2B400040D72 /* Test+Helpers.swift */; };
+		3A440F77289E1E4C0001F9B2 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 3A440F76289E1E4C0001F9B2 /* Swinject */; };
 		3ADAF16626DDAB26008B8673 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16526DDAB26008B8673 /* AppDelegate.swift */; };
 		3ADAF16826DDAB26008B8673 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16726DDAB26008B8673 /* SceneDelegate.swift */; };
 		3ADAF17026DDAB27008B8673 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAF16E26DDAB27008B8673 /* Todo.xcdatamodeld */; };
@@ -100,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A440F77289E1E4C0001F9B2 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +285,9 @@
 			dependencies = (
 			);
 			name = Todo;
+			packageProductDependencies = (
+				3A440F76289E1E4C0001F9B2 /* Swinject */,
+			);
 			productName = Todo;
 			productReference = 3ADAF16226DDAB26008B8673 /* Todo.app */;
 			productType = "com.apple.product-type.application";
@@ -355,6 +360,9 @@
 				Base,
 			);
 			mainGroup = 3ADAF15926DDAB26008B8673;
+			packageReferences = (
+				3A440F75289E1E4C0001F9B2 /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = 3ADAF16326DDAB26008B8673 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -773,6 +781,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3A440F75289E1E4C0001F9B2 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A440F76289E1E4C0001F9B2 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A440F75289E1E4C0001F9B2 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		3ADAF16E26DDAB27008B8673 /* Todo.xcdatamodeld */ = {
