@@ -9,10 +9,10 @@ on:
 jobs:
   build-and-test:
 
-    runs-on: macos-latest
+    runs-on: macos-12
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Compile and run tests
-      run: fastlane scan --scheme "CI" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+      run: fastlane scan --project "Todo.xcodeproj" --scheme "CI" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
